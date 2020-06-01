@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Folder;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateFolder;
 
 class FolderController extends Controller
 {
@@ -11,7 +12,8 @@ class FolderController extends Controller
     {
         return view('folders/create');
     }
-    public function create(Request $request)
+    // public function create(Request $request) 引数の型を Request で定義した方にすることで，バリデーションチェックできる
+    public function create(CreateFolder $request)
     {
         $folder = new Folder();
         $folder->title = $request->title;
