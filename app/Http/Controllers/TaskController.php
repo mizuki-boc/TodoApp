@@ -15,6 +15,10 @@ class TaskController extends Controller
     {
         $folders = Auth::user()->folders()->get();
         $current_folder = Folder::find($id);
+        if (is_null($current_folder)) {
+            abort(404);
+        }
+
         // $tasks = Task::where('folder_id', $current_folder->id)->get();
         $tasks = $current_folder->tasks()->get();
         // view関数 第一引数にtmpfile 二にtmpに渡すデータ
